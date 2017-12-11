@@ -1,0 +1,21 @@
+{
+  "name": "tf2-items",
+  "version": "1.0.0",
+  "description": "Simple wrapper for the TF2 APIs",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nicklason/node-tf2-items.git"
+  },
+  "author": "Nicklas Marc Pedersen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nicklason/node-tf2-items/issues"
+  },
+  "homepage": "https://github.com/Nicklason/node-tf2-items#readme",
+  "dependencies": {
+    "events": "^1.1.1",
+    "request": "^2.83.0",
+    "util": "^0.10.3"
+  }
+}
