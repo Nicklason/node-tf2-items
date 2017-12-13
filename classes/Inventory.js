@@ -50,29 +50,17 @@ Inventory.prototype._parseItems = function(items) {
 };
 
 Inventory.prototype._parseItem = function(item) {
-	var schemaItem = this.schema.getItem(item.defindex);
 	var attributes = this.getItemAttributes(item.attributes);
+	item.attributes = attributes;
 
-	var parsed = new Item({
-		id: item.id,
-		original_id: item.original_id,
-		defindex: item.defindex,
-		level: item.level,
-		quality: item.quality,
-		quantity: item.quantity,
-		origin: item.origin,
-		tradeable: !item.flag_cannot_trade,
-		craftable: item.hasOwnProperty("flag_cannot_craft") ? !item.flag_cannot_craft : true,
-		attributes: attributes,
-		schema: schemaItem
-	});
-
+	var parsed = new Item(item);
+	
 	return parsed;
 };
 
 Inventory.prototype.getItemAttributes = function(attributes) {
 	if (Array.isArray(attributes) === false) {
-		// No attributes.
+		// Item has no attributes.
 		return {};
 	}
 
@@ -94,8 +82,8 @@ Inventory.prototype.getItemAttributes = function(attributes) {
 };
 
 Inventory.prototype.getItemDisplayName = function(item) {
-	if (item.schema === null) {
-		// Did not find a schema item that matched this item's defindex.
+	var schemaItem = this.schema.getItem(item.defindex);
+	if (schemaItem === null) {
 		return null;
 	}
 
@@ -116,10 +104,10 @@ Inventory.prototype.getItemDisplayName = function(item) {
 	if (item.isKillstreak() !== false) {
 		name += EKillstreak[item.attributes.killstreak];
 	}
-	if (name === "" && item.schema.proper_name === true) {
+	if (name === "" && schemaItem.proper_name === true) {
 		name = "The ";
 	}
-	name += item.schema.name;
+	name += schemaItem.name;
 
 	return name;
 };

@@ -1,4 +1,4 @@
-var TF2Items = require('../index.js');
+var TF2Items = require('tf2-items');
 
 var tf2 = new TF2Items({
 	apiKey: ""
@@ -17,6 +17,7 @@ tf2.on("ready", function() {
 			return;
 		}
 		for (var i = 0; i < inventory.items.length; i++) {
+			// Get display name of the items in inventory.
 			console.log(inventory.getItemDisplayName(inventory.items[i]));
 		}
 	});

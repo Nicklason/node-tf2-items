@@ -8,11 +8,9 @@ function Item(item) {
 	this.quality = item.quality;
 	this.quantity = item.quantity;
 	this.origin = item.origin;
-	this.tradeable = item.tradeable;
-	this.craftable = item.craftable;
-
+	this.tradeable = !item.flag_cannot_trade;
+	this.craftable = item.hasOwnProperty("flag_cannot_craft") ? !item.flag_cannot_craft : true;
 	this.attributes = item.attributes;
-	this.schema = item.schema;
 }
 
 Item.prototype.isKillstreak = function() {
