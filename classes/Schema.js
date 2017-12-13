@@ -5,7 +5,7 @@ var WebRequest = require('./WebRequest.js');
 function Schema(options) {}
 
 Schema.prototype.fetch = function(apiKey, language, callback) {
-	if (typeof language === 'function') {
+	if (typeof language == 'function') {
 		callback = language;
 		language = "English";
 	}
@@ -29,8 +29,8 @@ Schema.prototype.fetch = function(apiKey, language, callback) {
 				self.qualities[name] = id;
 			}
 			self.items = result.items;
-			this.effects = result.attribute_controlled_attached_particles;
-			this.attributes = result.attributes;
+			self.effects = result.attribute_controlled_attached_particles;
+			self.attributes = result.attributes;
 		}
 
 		callback(null, self.status == 1);
@@ -57,7 +57,7 @@ Schema.prototype.getItems = function(defindex) {
 
 Schema.prototype.getQuality = function(search) {
 	// Check if we are searching with a name or id and return the opposite if found.
-	var isID = isNaN(parseInt(search)) === false;
+	var isID = isNaN(parseInt(search)) == false;
 	if (isID) {
 		for (var quality in this.qualities) {
 			if (this.qualities[quality] == search) {

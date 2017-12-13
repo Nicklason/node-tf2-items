@@ -27,7 +27,7 @@ function WebRequest(httpMethod, method, version, input, callback) {
 }
 
 WebRequest.prototype._retryUntilResponse = function(attempts, options, callback) {
-	if (typeof options === 'function') {
+	if (typeof options == 'function') {
 		callback = options;
 		options = attempts;
 		attempts = 0;
@@ -41,14 +41,12 @@ WebRequest.prototype._retryUntilResponse = function(attempts, options, callback)
 	self.httpRequest(options, function(err, response, body) {
 		attempts++;
 		if (err) {
-			console.log("An error occurred");
-			console.log(err);
 			// Retry if an error occurred.
 			setTimeout(WebRequest.prototype._retryUntilResponse.bind(self, attempts, options, callback), 2000);
 			return;
 		}
 
-		if (!body || typeof body !== 'object') {
+		if (!body || typeof body != 'object') {
 			// Missing body, something went wrong.
 			callback(new Error("Invalid API response"));
 			return;
@@ -64,7 +62,7 @@ WebRequest.prototype.httpRequest = function(uri, options, callback) {
 		callback = options;
 		options = uri;
 		uri = options.url || options.uri;
-	} else if (typeof options === 'function') {
+	} else if (typeof options == 'function') {
 		callback = options;
 		options = {};
 	}
@@ -74,8 +72,8 @@ WebRequest.prototype.httpRequest = function(uri, options, callback) {
 	var self = this;
 	request(options, function(err, response, body) {
 		var hasCallback = !!callback;
-		var httpError = options.checkHttpError !== false && self._checkHttpError(err, response, callback, body)
-		var jsonError = options.json && options.checkJsonError !== false && !body ? new Error("Malformed JSON response") : null;
+		var httpError = options.checkHttpError != false && self._checkHttpError(err, response, callback, body)
+		var jsonError = options.json && options.checkJsonError != false && !body ? new Error("Malformed JSON response") : null;
 
 		if (hasCallback && !(httpError || jsonError)) {
 			if (jsonError) {
@@ -89,6 +87,13 @@ WebRequest.prototype.httpRequest = function(uri, options, callback) {
 
 WebRequest.prototype._checkHttpError = function(err, response, callback, body) {
 	if (err) {
+		callback(err, response, body);
+		return err;
+	}
+
+	if (response.statusCode > 499 && response.statusCode < 600) {
+		err = new Error("Team Fortress 2 APIs are offline");
+		err.code = response.statusCode;
 		callback(err, response, body);
 		return err;
 	}
