@@ -155,7 +155,7 @@ Inventory.prototype.getItemDisplayName = function(item) {
 	if (!item.craftable) {
 		name += "Non-Craftable ";
 	}
-	if (item.quality != 6 && item.quality != 12 && item.quality != 5) {
+	if (item.quality != 6 && item.quality != 15 && item.quality != 5) {
 		name += this.schema.getQuality(item.quality) + " ";
 	}
 	if (item.isAustralium()) {
