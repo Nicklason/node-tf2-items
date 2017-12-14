@@ -1,6 +1,6 @@
-module.exports = Item;
+module.exports = CItem;
 
-function Item(item) {
+function CItem(item) {
 	this.id = item.id;
 	this.original_id = item.original_id;
 	this.defindex = item.defindex;
@@ -13,10 +13,10 @@ function Item(item) {
 	this.attributes = item.attributes;
 }
 
-Item.prototype.isKillstreak = function() {
+CItem.prototype.isKillstreak = function() {
 	return this.attributes.hasOwnProperty("killstreak") && this.attributes.killstreak != 0;
 };
 
-Item.prototype.isAustralium = function() {
+CItem.prototype.isAustralium = function() {
 	return this.attributes.hasOwnProperty("australium") && this.attributes.australium == true;
 };

@@ -1,16 +1,16 @@
-module.exports = Inventory;
+module.exports = CInventory;
 
-var WebRequest = require('./WebRequest.js');
-var Item = require('./Item.js');
+var WebRequest = require('./CWebRequest.js');
+var Item = require('./CItem.js');
 
 var EKillstreak = require('../resources/EKillstreak.js');
 
-function Inventory(steamid64, schema) {
+function CInventory(steamid64, schema) {
 	this.schema = schema;
 	this.steamid64 = steamid64;
 }
 
-Inventory.prototype.fetch = function(apiKey, callback) {
+CInventory.prototype.fetch = function(apiKey, callback) {
 	var self = this;
 	new WebRequest("GET", "GetPlayerItems", "v0001", { steamid: self.steamid64, key: apiKey }, function(err, body) {
 		if (err) {
@@ -27,7 +27,7 @@ Inventory.prototype.fetch = function(apiKey, callback) {
 	});
 };
 
-Inventory.prototype.getSummary = function() {
+CInventory.prototype.getSummary = function() {
 	var names = {};
 
 	this.items.forEach((item) => {
@@ -38,7 +38,7 @@ Inventory.prototype.getSummary = function() {
 	return names;
 };
 
-Inventory.prototype._parse = function(result) {
+CInventory.prototype._parse = function(result) {
 	if (this.status == 15) {
 		this.isPrivate = true;
 	} else if (this.status == 1) {
@@ -47,11 +47,11 @@ Inventory.prototype._parse = function(result) {
 	}
 };
 
-Inventory.prototype.isPrivate = function() {
+CInventory.prototype.isPrivate = function() {
 	return this.status == 15;
 };
 
-Inventory.prototype._parseItems = function(items) {
+CInventory.prototype._parseItems = function(items) {
 	var parsed = [];
 	for (var i = 0; i < items.length; i++) {
 		var item = this._parseItem(items[i]);
@@ -60,7 +60,7 @@ Inventory.prototype._parseItems = function(items) {
 	this.items = parsed;
 };
 
-Inventory.prototype._parseItem = function(item) {
+CInventory.prototype._parseItem = function(item) {
 	var attributes = this.getItemAttributes(item);
 	item.attributes = attributes;
 
@@ -69,7 +69,7 @@ Inventory.prototype._parseItem = function(item) {
 };
 
 // We need a more sophisticated way of identifying items and getting the attributes, because this is bad in my oppinion.
-Inventory.prototype.getItemAttributes = function(item) {
+CInventory.prototype.getItemAttributes = function(item) {
 	if (!Array.isArray(item.attributes)) {
 		// Item has no attributes.
 		return {};
@@ -83,7 +83,7 @@ Inventory.prototype.getItemAttributes = function(item) {
 };
 
 // I apologize for the mess... :/
-Inventory.prototype._getFabricatorValues = function(item) {
+CInventory.prototype._getFabricatorValues = function(item) {
 	var attributes = {
 		parts: []
 	};
@@ -123,7 +123,7 @@ Inventory.prototype._getFabricatorValues = function(item) {
 	return attributes;
 };
 
-Inventory.prototype._getAttributeValues = function(item) {
+CInventory.prototype._getAttributeValues = function(item) {
 	var defindexes = {
 		australium: 2027,
 		killstreak: 2025,
@@ -146,7 +146,7 @@ Inventory.prototype._getAttributeValues = function(item) {
 	return attributes;
 };
 
-Inventory.prototype.getItemDisplayName = function(item) {
+CInventory.prototype.getItemDisplayName = function(item) {
 	var name = "", schemaItem = this.schema.getItem(item.defindex);
 	
 	if (!item.tradeable) {

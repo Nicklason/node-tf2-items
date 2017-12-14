@@ -1,7 +1,7 @@
 'use strict';
 
-var Schema = require('./classes/Schema.js');
-var Inventory = require('./classes/Inventory.js');
+var CSchema = require('./classes/CSchema.js');
+var CInventory = require('./classes/CInventory.js');
 
 module.exports = Items;
 
@@ -44,7 +44,7 @@ Items.prototype.init = function(callback) {
 };
 
 Items.prototype.getSchema = function(callback) {
-	var schema = new Schema();
+	var schema = new CSchema();
 
 	var self = this;
 	schema.fetch(self.apiKey, function(err, success) {
@@ -68,7 +68,7 @@ Items.prototype.getInventory = function(steamid64, callback) {
 		return;
 	}
 
-	var inventory = new Inventory(steamid64, this.schema);
+	var inventory = new CInventory(steamid64, this.schema);
 	inventory.fetch(this.apiKey, function(err) {
 		if (err) {
 			callback(err);

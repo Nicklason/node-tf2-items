@@ -1,17 +1,17 @@
-module.exports = Schema;
+module.exports = CSchema;
 
-var WebRequest = require('./WebRequest.js');
+var CWebRequest = require('./CWebRequest.js');
 
-function Schema(options) {}
+function CSchema(options) {}
 
-Schema.prototype.fetch = function(apiKey, language, callback) {
+CSchema.prototype.fetch = function(apiKey, language, callback) {
 	if (typeof language == 'function') {
 		callback = language;
 		language = "English";
 	}
 
 	var self = this;
-	new WebRequest("GET", "GetSchema", "v0001", { language: language, key: apiKey }, function(err, body) {
+	new CWebRequest("GET", "GetSchema", "v0001", { language: language, key: apiKey }, function(err, body) {
 		if (err) {
 			callback(err);
 			return;
@@ -38,7 +38,7 @@ Schema.prototype.fetch = function(apiKey, language, callback) {
 	});
 };
 
-Schema.prototype.getItem = function(defindex) {
+CSchema.prototype.getItem = function(defindex) {
 	for (var i = 0; i < this.items.length; i++) {
 		var item = this.items[i];
 		if (item.defindex == defindex) {
@@ -52,7 +52,7 @@ Schema.prototype.getItem = function(defindex) {
 	return null;
 };
 
-Schema.prototype.getQuality = function(search) {
+CSchema.prototype.getQuality = function(search) {
 	// Check if we are searching with a name or id and return the opposite if found.
 	var isID = isNaN(parseInt(search)) == false;
 	if (isID) {
@@ -70,7 +70,7 @@ Schema.prototype.getQuality = function(search) {
 	return null;
 };
 
-Schema.prototype.getEffectWithId = function(id) {
+CSchema.prototype.getEffectWithId = function(id) {
 	for (var i = 0; i < this.effects.length; i++) {
 		if (this.effects[i].id == id) {
 			return this.effects[i];

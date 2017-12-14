@@ -1,10 +1,10 @@
 'use strict';
 
-module.exports = WebRequest;
+module.exports = CWebRequest;
 
 var request = require('request');
 
-function WebRequest(httpMethod, method, version, input, callback) {
+function CWebRequest(httpMethod, method, version, input, callback) {
 	input = input || {};
 	if (!input.key) {
 		callback(new Error("No API-Key set (yet)"));
@@ -26,7 +26,7 @@ function WebRequest(httpMethod, method, version, input, callback) {
 	this._retryUntilResponse(options, callback);
 }
 
-WebRequest.prototype._retryUntilResponse = function(attempts, options, callback) {
+CWebRequest.prototype._retryUntilResponse = function(attempts, options, callback) {
 	if (typeof options == 'function') {
 		callback = options;
 		options = attempts;
@@ -42,7 +42,7 @@ WebRequest.prototype._retryUntilResponse = function(attempts, options, callback)
 		attempts++;
 		if (err) {
 			// Retry if an error occurred.
-			setTimeout(WebRequest.prototype._retryUntilResponse.bind(self, attempts, options, callback), 2000);
+			setTimeout(CWebRequest.prototype._retryUntilResponse.bind(self, attempts, options, callback), 2000);
 			return;
 		}
 
@@ -57,7 +57,7 @@ WebRequest.prototype._retryUntilResponse = function(attempts, options, callback)
 	});
 };
 
-WebRequest.prototype.httpRequest = function(uri, options, callback) {
+CWebRequest.prototype.httpRequest = function(uri, options, callback) {
 	if (typeof uri === 'object') {
 		callback = options;
 		options = uri;
@@ -85,7 +85,7 @@ WebRequest.prototype.httpRequest = function(uri, options, callback) {
 	});
 };
 
-WebRequest.prototype._checkHttpError = function(err, response, callback, body) {
+CWebRequest.prototype._checkHttpError = function(err, response, callback, body) {
 	if (err) {
 		callback(err, response, body);
 		return err;
