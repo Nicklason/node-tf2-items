@@ -29,6 +29,7 @@ Schema.prototype.fetch = function(apiKey, language, callback) {
 				self.qualities[name] = id;
 			}
 			self.items = result.items;
+			self.origins = result.originNames;
 			self.effects = result.attribute_controlled_attached_particles;
 			self.attributes = result.attributes;
 		}
