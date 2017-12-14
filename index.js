@@ -24,8 +24,9 @@ function Items(options) {
 };
 
 Items.prototype.init = function(callback) {
+	this.updateTimer = setInterval(Items.prototype.getSchema.bind(this), this.updateTime);
+
 	var self = this;
-	self.updateTimer = setInterval(Items.prototype.getSchema.bind(self), self.updateTime);
 	self.getSchema(function(err, success) {
 		if (err || !success) {
 			if (callback) {
@@ -43,9 +44,9 @@ Items.prototype.init = function(callback) {
 };
 
 Items.prototype.getSchema = function(callback) {
-	var self = this;
-
 	var schema = new Schema();
+
+	var self = this;
 	schema.fetch(self.apiKey, function(err, success) {
 		if (err) {
 			callback(err);
@@ -62,7 +63,7 @@ Items.prototype.getSchema = function(callback) {
 };
 
 Items.prototype.getInventory = function(steamid64, callback) {
-	if (this.ready !== true) {
+	if (!this.ready) {
 		callback(new Error("Not ready (yet)"));
 		return;
 	}
