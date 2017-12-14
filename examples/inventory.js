@@ -12,20 +12,7 @@ tf2.on("ready", function() {
 			return;
 		}
 
-		var names = [];
-		// Get display name and add to array
-		inventory.items.forEach(function(item) {
-			var name = inventory.getItemDisplayName(item);
-			names.push(name);
-		});
-
-		// Alphabetic sort A -> Z
-		names.sort(function(a, b) {
-			if (a < b) { return -1; }
-			if (a > b) { return 1; }
-			return 0;
-		});
-
-		console.log(names);
+		var summary = inventory.getSummary();
+		console.log(summary);
 	});
 });
