@@ -164,7 +164,7 @@ Inventory.prototype.getItemDisplayName = function(item) {
 	if (item.isKillstreak()) {
 		name += EKillstreak[item.attributes.killstreak] + " ";
 	}
-	if (item.isUnusual()) {
+	if (item.quality == 5) {
 		name += item.attributes.effect.name + " ";
 	}
 	// I am begging for forgiveness!

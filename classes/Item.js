@@ -20,14 +20,3 @@ Item.prototype.isKillstreak = function() {
 Item.prototype.isAustralium = function() {
 	return this.attributes.hasOwnProperty("australium") && this.attributes.australium == true;
 };
-
-Item.prototype.isUnusual = function() {
-	return this.quality == 5;
-};
-
-Item.prototype.getImageUrl = function() {
-	if (this.schema !== null) {
-		return "http://media.steampowered.com/apps/440/icons/" + this.schema.image;
-	}
-	return null;
-};
