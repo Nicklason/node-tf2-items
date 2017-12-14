@@ -51,10 +51,6 @@ Schema.prototype.getItem = function(defindex) {
 	return null;
 };
 
-Schema.prototype.getItems = function(defindex) {
-	return this.items || null;
-};
-
 Schema.prototype.getQuality = function(search) {
 	// Check if we are searching with a name or id and return the opposite if found.
 	var isID = isNaN(parseInt(search)) == false;
