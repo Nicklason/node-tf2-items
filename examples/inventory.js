@@ -1,7 +1,7 @@
-var tf2Items = require("tf2-items");
+var tf2Items = require("../index.js");
 
 var tf2 = new tf2Items({
-	apiKey: ""
+	apiKey: "E8117DA7F89C16F0E70D3B171090CB92"
 });
 
 tf2.init();

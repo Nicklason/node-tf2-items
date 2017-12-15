@@ -2,6 +2,8 @@ module.exports = CSchema;
 
 var CWebRequest = require('./CWebRequest.js');
 
+var EKillstreak = require('../resources/EKillstreak.js');
+
 function CSchema(options) {}
 
 CSchema.prototype.fetch = function(apiKey, language, callback) {
@@ -77,4 +79,33 @@ CSchema.prototype.getEffectWithId = function(id) {
 		}
 	}
 	return null;
+};
+
+CSchema.prototype.getDisplayName = function(item) {
+	var name = "", schemaItem = this.getItem(item.defindex);
+	
+	if (!item.tradeable) {
+		name += "Non-Tradeable ";
+	}
+	if (!item.craftable) {
+		name += "Non-Craftable ";
+	}
+	if (item.quality != 6 && item.quality != 15 && item.quality != 5) {
+		name += this.getQuality(item.quality) + " ";
+	}
+	if (item.isAustralium()) {
+		name += "Australium ";
+	}
+	if (item.isKillstreak()) {
+		name += EKillstreak[item.killstreak] + " ";
+	}
+	if (item.quality == 5) {
+		name += item.effect.name + " ";
+	}
+	if (name == "" && schemaItem.proper_name) {
+		name += "The ";
+	}
+
+	name += schemaItem.name;
+	return name;
 };

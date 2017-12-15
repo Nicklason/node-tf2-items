@@ -11,10 +11,16 @@ function CItem(item) {
 	this.tradeable = !item.flag_cannot_trade;
 	this.craftable = item.hasOwnProperty("flag_cannot_craft") ? false : true;
 	this.attributes = item.attributes;
+	this.killstreak = this.isKillstreak();
+	this.australium = this.isAustralium();
+
+	if (this.attributes.hasOwnProperty("effect")) {
+		this.effect = this.attributes.effect;
+	}
 }
 
 CItem.prototype.isKillstreak = function() {
-	return this.attributes.hasOwnProperty("killstreak") && this.attributes.killstreak != 0;
+	return this.attributes.hasOwnProperty("killstreak") ? this.attributes.killstreak : 0;
 };
 
 CItem.prototype.isAustralium = function() {
