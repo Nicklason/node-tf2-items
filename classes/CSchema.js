@@ -84,10 +84,10 @@ CSchema.prototype.getEffectWithId = function(id) {
 CSchema.prototype.getDisplayName = function(item) {
 	var name = "", schemaItem = this.getItem(item.defindex);
 	
-	if (!item.tradeable) {
+	if (item.hasOwnProperty("tradeable") && item.tradeable == false) {
 		name += "Non-Tradeable ";
 	}
-	if (!item.craftable) {
+	if (item.craftable == true) {
 		name += "Non-Craftable ";
 	}
 	if (item.quality != 6 && item.quality != 15 && item.quality != 5) {
