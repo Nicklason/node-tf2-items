@@ -100,7 +100,7 @@ CSchema.prototype.getDisplayName = function(item) {
 		name += EKillstreak[item.killstreak] + " ";
 	}
 	if (item.quality == 5) {
-		name += this.getEffectWithId(item.effect) + " ";
+		name += this.getEffectWithId(item.effect).name + " ";
 	}
 	if (name == "" && schemaItem.proper_name) {
 		name += "The ";
