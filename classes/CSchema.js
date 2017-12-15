@@ -87,7 +87,7 @@ CSchema.prototype.getDisplayName = function(item) {
 	if (item.hasOwnProperty("tradeable") && item.tradeable == false) {
 		name += "Non-Tradeable ";
 	}
-	if (item.craftable == true) {
+	if (item.craftable == false) {
 		name += "Non-Craftable ";
 	}
 	if (item.quality != 6 && item.quality != 15 && item.quality != 5) {
