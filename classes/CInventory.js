@@ -29,7 +29,7 @@ CInventory.prototype.getSummary = function() {
 	var names = {};
 
 	this.items.forEach((item) => {
-		var name = this.getDisplayName(item);
+		var name = this.schema.getDisplayName(item);
 		names[name] = (names[name] || 0) + 1;
 	});
 
