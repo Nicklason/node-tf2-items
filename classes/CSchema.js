@@ -93,10 +93,10 @@ CSchema.prototype.getDisplayName = function(item) {
 	if (item.quality != 6 && item.quality != 15 && item.quality != 5) {
 		name += this.getQuality(item.quality) + " ";
 	}
-	if (item.isAustralium()) {
+	if (item.australium == true) {
 		name += "Australium ";
 	}
-	if (item.isKillstreak()) {
+	if (item.killstreak > 0) {
 		name += EKillstreak[item.killstreak] + " ";
 	}
 	if (item.quality == 5) {
