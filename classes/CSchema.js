@@ -93,14 +93,14 @@ CSchema.prototype.getDisplayName = function(item) {
 	if (item.quality != 6 && item.quality != 15 && item.quality != 5) {
 		name += this.getQuality(item.quality) + " ";
 	}
-	if (item.australium == true) {
-		name += "Australium ";
-	}
 	if (item.killstreak > 0) {
 		name += EKillstreak[item.killstreak] + " ";
 	}
 	if (item.quality == 5) {
 		name += this.getEffectWithId(item.effect).name + " ";
+	}
+	if (item.australium == true) {
+		name += "Australium ";
 	}
 	if (name == "" && schemaItem.proper_name) {
 		name += "The ";
