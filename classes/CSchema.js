@@ -33,7 +33,7 @@ CSchema.prototype.fetch = function(apiKey, language, callback) {
 			self.items = result.items;
 			self.origins = result.originNames;
 			self.effects = result.attribute_controlled_attached_particles;
-			self.attributes = result.attributes
+			self.attributes = result.attributes;
 		}
 
 		callback(null, self.status == 1);
@@ -50,7 +50,7 @@ CSchema.prototype.getItem = function(defindex) {
 				item_class: item.item_class,
 				item_type_name: item.item_type_name,
 				image: item.image_url_large.replace('http://media.steampowered.com/apps/440/icons/', ''),
-				attributes: item.attributes || [];
+				attributes: item.attributes || []
 			};
 		}
 	}
