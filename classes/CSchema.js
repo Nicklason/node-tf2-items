@@ -45,7 +45,8 @@ CSchema.prototype.getItem = function(defindex) {
 		var item = this.items[i];
 		if (item.defindex == defindex) {
 			return {
-				name: item.item_name,
+				name: item.name,
+				item_name: item.item_name,
 				proper_name: item.proper_name || false,
 				item_class: item.item_class,
 				item_type_name: item.item_type_name,
@@ -109,6 +110,6 @@ CSchema.prototype.getDisplayName = function(item) {
 		name += "The ";
 	}
 
-	name += schemaItem.name;
+	name += schemaItem.item_name;
 	return name;
 };
