@@ -100,7 +100,7 @@ CSchema.prototype.getDisplayName = function(item) {
 	if (item.killstreak > 0) {
 		name += EKillstreak[item.killstreak] + " ";
 	}
-	if (item.quality == 5) {
+	if (item.quality == 5 && item.hasOwnProperty('effect')) {
 		name += this.getEffectWithId(item.effect).name + " ";
 	}
 	if (item.australium == true) {
