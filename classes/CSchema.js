@@ -94,7 +94,7 @@ CSchema.prototype.getDisplayName = function(item) {
 	if (item.craftable == false) {
 		name += "Non-Craftable ";
 	}
-	if (item.quality != 6 && item.quality != 15 && item.quality != 5) {
+	if (item.quality != 6 && item.quality != 5) {
 		name += this.getQuality(item.quality) + " ";
 	}
 	if (item.killstreak > 0) {
