@@ -80,7 +80,8 @@ CInventory.prototype._getAttributeValues = function(item) {
 	var defindexes = {
 		australium: 2027,
 		killstreak: 2025,
-		unusual_effect: 134
+		unusual_effect: 134,
+		decorated: 834
 	};
 
 	var attributes = {};
@@ -93,6 +94,8 @@ CInventory.prototype._getAttributeValues = function(item) {
 			attributes.australium = true;
 		} else if (attribute.defindex == defindexes.unusual_effect) {
 			attributes.effect = attribute.float_value;
+		} else if (attribute.defindex == defindexes.decorated) {
+			attributes.decorated = true;
 		}
 	}
 

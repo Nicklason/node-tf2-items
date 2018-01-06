@@ -94,8 +94,11 @@ CSchema.prototype.getDisplayName = function(item) {
 	if (item.craftable == false) {
 		name += "Non-Craftable ";
 	}
-	if (item.quality != 6 && item.quality != 5) {
+	if (item.quality != 6 && item.quality != 15 && item.quality != 5) {
 		name += this.getQuality(item.quality) + " ";
+	}
+	if (item.hasOwnProperty('attributes') && item.attributes.hasOwnProperty('decorated') && item.attributes.decorated == true) {
+		name += "Decorated ";
 	}
 	if (item.killstreak > 0) {
 		name += EKillstreak[item.killstreak] + " ";

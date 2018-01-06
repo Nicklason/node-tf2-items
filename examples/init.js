@@ -1,4 +1,4 @@
-var tf2Items = require("tf2-items");
+var tf2Items = require("../");
 
 var tf2 = new tf2Items({
 	apiKey: ""
