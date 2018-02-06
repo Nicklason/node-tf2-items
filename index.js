@@ -11,11 +11,6 @@ function Items(options) {
 	options = options || {};
 
 	this.apiKey = options.apiKey;
-	/*
-	this.retryTime = options.retryTime || 2000;
-	this.retry = options.retry || true;
-	this.maxRetries = options.maxRetries || 5;
-	*/
 	this.updateTime = options.updateTime || 8 * 60 * 60 * 1000; // 8 hours
 	this.language = options.language || "English"
 	this.ready = false;

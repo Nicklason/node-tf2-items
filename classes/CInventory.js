@@ -6,6 +6,7 @@ var CItem = require('./CItem.js');
 function CInventory(steamid64, schema) {
 	this.schema = schema;
 	this.steamid64 = steamid64;
+	this.items = [];
 }
 
 CInventory.prototype.fetch = function(apiKey, callback) {
@@ -37,9 +38,7 @@ CInventory.prototype.getSummary = function() {
 };
 
 CInventory.prototype._parse = function(result) {
-	if (this.status == 15) {
-		this.isPrivate = true;
-	} else if (this.status == 1) {
+	if (this.status == 1) {
 		this.maxItems = result.num_backpack_slots;
 		this._parseItems(result.items);
 	}
@@ -53,6 +52,10 @@ CInventory.prototype._parseItems = function(items) {
 	var parsed = [];
 	for (var i = 0; i < items.length; i++) {
 		var item = this._parseItem(items[i]);
+		if (item.quality == 15) {
+			continue;
+		}
+
 		parsed.push(item);
 	}
 	this.items = parsed;
@@ -66,10 +69,8 @@ CInventory.prototype._parseItem = function(item) {
 	return parsed;
 };
 
-// We need a more sophisticated way of identifying items and getting the attributes, because this is bad in my oppinion.
 CInventory.prototype.getAttributes = function(item) {
 	if (!Array.isArray(item.attributes)) {
-		// Item has no attributes.
 		return {};
 	}
 

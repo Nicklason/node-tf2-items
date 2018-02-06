@@ -67,10 +67,8 @@ CSchema.prototype.getQuality = function(search) {
 				return quality;
 			}
 		}
-	} else {
-		if (this.qualities.hasOwnProperty(search)) {
-			return this.qualities[search];
-		}
+	} else if (this.qualities.hasOwnProperty(search)) {
+		return this.qualities[search];
 	}
 
 	return null;
@@ -96,9 +94,6 @@ CSchema.prototype.getDisplayName = function(item) {
 	}
 	if (item.quality != 6 && item.quality != 15 && item.quality != 5) {
 		name += this.getQuality(item.quality) + " ";
-	}
-	if (item.hasOwnProperty('attributes') && item.attributes.hasOwnProperty('decorated') && item.attributes.decorated == true) {
-		name += "Decorated ";
 	}
 	if (item.killstreak > 0) {
 		name += EKillstreak[item.killstreak] + " ";
