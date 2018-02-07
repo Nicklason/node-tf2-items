@@ -52,7 +52,7 @@ CInventory.prototype._parseItems = function(items) {
 	var parsed = [];
 	for (var i = 0; i < items.length; i++) {
 		var item = this._parseItem(items[i]);
-		if (item.quality == 15) {
+		if (item.quality == 15 || (item.attributes.hasOwnProperty('decorated') && item.attributes.decorated == true)) {
 			continue;
 		}
 
