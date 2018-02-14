@@ -84,7 +84,7 @@ CSchema.prototype.getEffectWithId = function(id) {
 };
 
 CSchema.prototype.getEffectId = function(effect) {
-	for (var i = 0; i < this.effects.length.length; i++) {
+	for (var i = 0; i < this.effects.length; i++) {
 		if (this.effects[i].name == effect) {
 			return this.effects[i].id;
 		}
