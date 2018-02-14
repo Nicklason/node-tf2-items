@@ -83,6 +83,15 @@ CSchema.prototype.getEffectWithId = function(id) {
 	return null;
 };
 
+CSchema.prototype.getEffectId = function(effect) {
+	for (var i = 0; i < this.effects.length.length; i++) {
+		if (this.effects[i].name == effect) {
+			return this.effects[i].id;
+		}
+	}
+	return null;
+}
+
 CSchema.prototype.getDisplayName = function(item) {
 	var name = "", schemaItem = this.getItem(item.defindex);
 	
