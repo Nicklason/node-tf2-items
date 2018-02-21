@@ -43,7 +43,7 @@ Items.prototype.getSchema = function(callback) {
 
 	var self = this;
 	schema.fetch(self.apiKey, function(err, success) {
-		if (err) {
+		if (err && callback) {
 			callback(err);
 			return;
 		}
@@ -53,7 +53,9 @@ Items.prototype.getSchema = function(callback) {
 			self.schema = schema;
 		}
 
-		callback(null, schema);
+		if (callback) {
+			callback(null, schema);
+		}
 	});
 };
 
