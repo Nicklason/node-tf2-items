@@ -103,7 +103,11 @@ CSchema.prototype.getDisplayName = function(item) {
 	}
 	if (item.quality != 6 && item.quality != 15 && item.quality != 5) {
 		name += this.getQuality(item.quality) + " ";
+	} else if (item.quality == 5 && !item.hasOwnProperty('effect')) {
+		// Add unusual to the name if item is unusual without effect.
+		name += this.getQuality(item.quality) + " ";
 	}
+
 	if (item.killstreak > 0) {
 		name += EKillstreak[item.killstreak] + " ";
 	}
