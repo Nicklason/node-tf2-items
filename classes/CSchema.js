@@ -50,7 +50,7 @@ CSchema.prototype.getItem = function(defindex) {
 				proper_name: item.proper_name || false,
 				item_class: item.item_class,
 				item_type_name: item.item_type_name,
-				image: item.image_url_large.replace('http://media.steampowered.com/apps/440/icons/', ''),
+				image: (item.image_url_large || item.image_url).replace('http://media.steampowered.com/apps/440/icons/', ''),
 				attributes: item.attributes || []
 			};
 		}
