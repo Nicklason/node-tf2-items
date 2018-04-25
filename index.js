@@ -12,26 +12,25 @@ function Items(options) {
 
 	this.apiKey = options.apiKey;
 	this.updateTime = options.updateTime || 8 * 60 * 60 * 1000; // 8 hours
-	this.language = options.language || "English"
+	this.language = options.language || 'English';
 	this.ready = false;
 
 	this.request = require('request');
-};
+}
 
 Items.prototype.init = function(callback) {
-	this.updateTimer = setInterval(Items.prototype.getSchema.bind(this), this.updateTime);
-
 	var self = this;
 	self.getSchema(function(err, success) {
 		if (err || !success) {
 			if (callback) {
-				callback(err || new Error("Did not get a valid response"));
+				callback(err || new Error('Did not get a valid response'));
 			}
 			return;
 		}
 
+		self.updateTimer = setInterval(Items.prototype.getSchema.bind(self), self.updateTime);
 		self.ready = true;
-		self.emit("ready");
+		self.emit('ready');
 		if (callback) {
 			callback(null);
 		}
@@ -61,7 +60,7 @@ Items.prototype.getSchema = function(callback) {
 
 Items.prototype.getInventory = function(steamid64, callback) {
 	if (!this.ready) {
-		callback(new Error("Not ready (yet)"));
+		callback(new Error('Not ready (yet)'));
 		return;
 	}
 

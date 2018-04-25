@@ -4,16 +4,16 @@ var CWebRequest = require('./CWebRequest.js');
 
 var EKillstreak = require('../resources/EKillstreak.js');
 
-function CSchema(options) {}
+function CSchema() {}
 
 CSchema.prototype.fetch = function(apiKey, language, callback) {
 	if (typeof language == 'function') {
 		callback = language;
-		language = "English";
+		language = 'English';
 	}
 
 	var self = this;
-	new CWebRequest("GET", "GetSchema", "v0001", { language: language, key: apiKey }, function(err, body) {
+	new CWebRequest('GET', 'GetSchema', 'v0001', { language: language, key: apiKey, format: 'vdf' }, function(err, body) {
 		if (err) {
 			callback(err);
 			return;
@@ -41,13 +41,13 @@ CSchema.prototype.fetch = function(apiKey, language, callback) {
 };
 
 CSchema.prototype.getItem = function(defindex) {
-	for (var i = 0; i < this.items.length; i++) {
+	for (var i in this.items) {
 		var item = this.items[i];
 		if (item.defindex == defindex) {
 			return {
 				name: item.name,
 				item_name: item.item_name,
-				proper_name: item.proper_name || false,
+				proper_name: item.proper_name == 1 || item.proper_name == true ? true : false,
 				item_class: item.item_class,
 				item_type_name: item.item_type_name,
 				image: (item.image_url_large || item.image_url).replace('http://media.steampowered.com/apps/440/icons/', ''),
@@ -75,7 +75,7 @@ CSchema.prototype.getQuality = function(search) {
 };
 
 CSchema.prototype.getEffectWithId = function(id) {
-	for (var i = 0; i < this.effects.length; i++) {
+	for (var i in this.effects) {
 		if (this.effects[i].id == id) {
 			return this.effects[i];
 		}
@@ -84,43 +84,43 @@ CSchema.prototype.getEffectWithId = function(id) {
 };
 
 CSchema.prototype.getEffectId = function(effect) {
-	for (var i = 0; i < this.effects.length; i++) {
+	for (var i in this.effects) {
 		if (this.effects[i].name == effect) {
 			return this.effects[i].id;
 		}
 	}
 	return null;
-}
+};
 
 CSchema.prototype.getDisplayName = function(item) {
-	var name = "", schemaItem = this.getItem(item.defindex);
+	var name = '', schema = this.getItem(item.defindex);
 	
-	if (item.hasOwnProperty("tradeable") && item.tradeable == false) {
-		name += "Non-Tradeable ";
+	if (item.hasOwnProperty('tradeable') && item.tradeable == false) {
+		name += 'Non-Tradeable ';
 	}
 	if (item.craftable == false) {
-		name += "Non-Craftable ";
+		name += 'Non-Craftable ';
 	}
 	if (item.quality != 6 && item.quality != 15 && item.quality != 5) {
-		name += this.getQuality(item.quality) + " ";
+		name += this.getQuality(item.quality) + ' ';
 	} else if (item.quality == 5 && !item.hasOwnProperty('effect')) {
 		// Add unusual to the name if item is unusual without effect.
-		name += this.getQuality(item.quality) + " ";
+		name += this.getQuality(item.quality) + ' ';
 	}
 
 	if (item.killstreak > 0) {
-		name += EKillstreak[item.killstreak] + " ";
+		name += EKillstreak[item.killstreak] + ' ';
 	}
 	if (item.quality == 5 && item.hasOwnProperty('effect')) {
-		name += this.getEffectWithId(item.effect).name + " ";
+		name += this.getEffectWithId(item.effect).name + ' ';
 	}
 	if (item.australium == true) {
-		name += "Australium ";
+		name += 'Australium ';
 	}
-	if (name == "" && schemaItem.proper_name) {
-		name += "The ";
+	if (name == '' && schema.proper_name) {
+		name += 'The ';
 	}
 
-	name += schemaItem.item_name;
+	name += schema.item_name;
 	return name;
 };

@@ -1,7 +1,7 @@
-var tf2Items = require("../");
+var tf2Items = require('../');
 
 var tf2 = new tf2Items({
-	apiKey: ""
+	apiKey: ''
 });
 
 tf2.init(function(err) {
@@ -10,6 +10,6 @@ tf2.init(function(err) {
 	}
 });
 
-tf2.on("ready", function() {
+tf2.on('ready', function() {
 	// init finished successfully, we are ready to go
 });

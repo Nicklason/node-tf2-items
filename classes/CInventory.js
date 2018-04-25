@@ -11,7 +11,7 @@ function CInventory(steamid64, schema) {
 
 CInventory.prototype.fetch = function(apiKey, callback) {
 	var self = this;
-	new CWebRequest("GET", "GetPlayerItems", "v0001", { steamid: self.steamid64, key: apiKey }, function(err, body) {
+	new CWebRequest('GET', 'GetPlayerItems', 'v0001', { steamid: self.steamid64, key: apiKey, format: 'vdf' }, function(err, body) {
 		if (err) {
 			callback(err);
 			return;
@@ -50,7 +50,7 @@ CInventory.prototype.isPrivate = function() {
 
 CInventory.prototype._parseItems = function(items) {
 	var parsed = [];
-	for (var i = 0; i < items.length; i++) {
+	for (var i in items) {
 		var item = this._parseItem(items[i]);
 		if (item.quality == 15 || (item.attributes.hasOwnProperty('decorated') && item.attributes.decorated == true)) {
 			continue;

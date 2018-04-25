@@ -1,6 +1,6 @@
 {
   "name": "tf2-items",
-  "version": "1.1.7",
+  "version": "1.2.0",
   "description": "Easily get information about Team Fortress 2 items and the schema",
   "main": "index.js",
   "repository": {
@@ -16,6 +16,7 @@
   "dependencies": {
     "events": "^1.1.1",
     "request": "^2.83.0",
-    "util": "^0.10.3"
+    "util": "^0.10.3",
+    "vdf": "0.0.2"
   }
 }
