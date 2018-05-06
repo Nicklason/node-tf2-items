@@ -30,7 +30,7 @@ CWebRequest.prototype._retryUntilResponse = function(attempts, options, callback
 		callback = options;
 		options = attempts;
 		attempts = 0;
-	} else if (attempts >= 3) {
+	} else if (attempts >= 5) {
 		// Attempted to get a valid response but failed multiple times.
 		callback(new Error('Failed to get a valid response'));
 		return;
@@ -40,7 +40,6 @@ CWebRequest.prototype._retryUntilResponse = function(attempts, options, callback
 	self.httpRequest(options, function(err, response, body) {
 		attempts++;
 		if (err) {
-			console.log(err);
 			// Retry if an error occurred.
 			setTimeout(CWebRequest.prototype._retryUntilResponse.bind(self, attempts, options, callback), 2000);
 			return;

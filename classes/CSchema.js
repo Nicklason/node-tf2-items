@@ -55,7 +55,7 @@ CSchema.prototype._fetchOverview = function(apiKey, language, callback) {
 		self.effects = result.attribute_controlled_attached_particles;
 		self.attributes = result.attributes;
 
-		callback(null, self.status == 1);
+		callback(null);
 	});
 };
 
@@ -66,16 +66,31 @@ CSchema.prototype._fetchItems = function(apiKey, language, callback) {
 	}
 
 	var self = this;
-	new CWebRequest('GET', 'GetSchemaItems', 'v0001', { language: language, key: apiKey }, function (err, result) {
-		if (err) {
-			callback(err);
-			return;
+
+	request(callback);
+
+	function request(next, callback) {
+		if (callback == undefined) {
+			callback = next;
+			next = 0;
 		}
 
-		self.items = result.items;
+		new CWebRequest('GET', 'GetSchemaItems', 'v0001', { language: language, key: apiKey, start: next }, function (err, result) {
+			if (err) {
+				callback(err);
+				return;
+			}
 
-		callback(null, self.status == 1);
-	});
+			self.items = (self.items || []).concat(result.items);
+
+			if (result.next) {
+				request(result.next, callback);
+				return;
+			}
+
+			callback(null);
+		});
+	}
 };
 
 CSchema.prototype.getItem = function(defindex) {

@@ -11,18 +11,15 @@ function CInventory(steamid64, schema) {
 
 CInventory.prototype.fetch = function(apiKey, callback) {
 	var self = this;
-	new CWebRequest('GET', 'GetPlayerItems', 'v0001', { steamid: self.steamid64, key: apiKey, format: 'vdf' }, function(err, body) {
+	new CWebRequest('GET', 'GetPlayerItems', 'v0001', { steamid: self.steamid64, key: apiKey }, function(err, result) {
 		if (err) {
 			callback(err);
 			return;
 		}
 
-		var result = body.result;
-		self.status = result.status;
-
 		self._parse(result);
 
-		callback(null, self.status == 1);
+		callback(null);
 	});
 };
 
@@ -38,10 +35,8 @@ CInventory.prototype.getSummary = function() {
 };
 
 CInventory.prototype._parse = function(result) {
-	if (this.status == 1) {
-		this.maxItems = result.num_backpack_slots;
-		this._parseItems(result.items);
-	}
+	this.maxItems = result.num_backpack_slots;
+	this._parseItems(result.items);
 };
 
 CInventory.prototype.isPrivate = function() {

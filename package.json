@@ -1,6 +1,6 @@
 {
   "name": "tf2-items",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Easily get information about Team Fortress 2 items and the schema",
   "main": "index.js",
   "repository": {
@@ -15,7 +15,7 @@
   "homepage": "https://github.com/Nicklason/node-tf2-items#readme",
   "dependencies": {
     "events": "^1.1.1",
-    "request": "^2.83.0",
+    "request": "^2.85.0",
     "util": "^0.10.3"
   }
 }
