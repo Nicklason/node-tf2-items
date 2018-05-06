@@ -13,28 +13,66 @@ CSchema.prototype.fetch = function(apiKey, language, callback) {
 	}
 
 	var self = this;
-	new CWebRequest('GET', 'GetSchema', 'v0001', { language: language, key: apiKey, format: 'vdf' }, function(err, body) {
+	self._fetchItems(apiKey, language, function(err) {
 		if (err) {
 			callback(err);
 			return;
 		}
 
-		var result = body.result;
-
-		self.status = result.status;
-		if (self.status == 1) {
-			self.qualities = {};
-			// Get all qualities with their 'proper' name and id paired.
-			for (var quality in result.qualities) {
-				var id = result.qualities[quality];
-				var name = result.qualityNames[quality];
-				self.qualities[name] = id;
+		self._fetchOverview(apiKey, language, function(err) {
+			if (err) {
+				callback(err);
+				return;
 			}
-			self.items = result.items;
-			self.origins = result.originNames;
-			self.effects = result.attribute_controlled_attached_particles;
-			self.attributes = result.attributes;
+
+			callback(null);
+		});
+	});
+};
+
+CSchema.prototype._fetchOverview = function(apiKey, language, callback) {
+	if (typeof language == 'function') {
+		callback = language;
+		language = 'English';
+	}
+
+	var self = this;
+	new CWebRequest('GET', 'GetSchemaOverview', 'v0001', { language: language, key: apiKey }, function (err, result) {
+		if (err) {
+			callback(err);
+			return;
 		}
+
+		self.qualities = {};
+		// Get all qualities with their 'proper' name and id paired.
+		for (var quality in result.qualities) {
+			var id = result.qualities[quality];
+			var name = result.qualityNames[quality];
+			self.qualities[name] = id;
+		}
+
+		self.origins = result.originNames;
+		self.effects = result.attribute_controlled_attached_particles;
+		self.attributes = result.attributes;
+
+		callback(null, self.status == 1);
+	});
+};
+
+CSchema.prototype._fetchItems = function(apiKey, language, callback) {
+	if (typeof language == 'function') {
+		callback = language;
+		language = 'English';
+	}
+
+	var self = this;
+	new CWebRequest('GET', 'GetSchemaItems', 'v0001', { language: language, key: apiKey }, function (err, result) {
+		if (err) {
+			callback(err);
+			return;
+		}
+
+		self.items = result.items;
 
 		callback(null, self.status == 1);
 	});

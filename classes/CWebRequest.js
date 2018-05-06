@@ -3,7 +3,6 @@
 module.exports = CWebRequest;
 
 var request = require('request');
-var VDF = require('vdf');
 
 function CWebRequest(httpMethod, method, version, input, callback) {
 	input = input || {};
@@ -17,14 +16,10 @@ function CWebRequest(httpMethod, method, version, input, callback) {
 	var options = {
 		'uri': `https://api.steampowered.com/${face}/${method}/${version}/`,
 		'method': httpMethod,
-		'gzip': true
+		'gzip': true,
+		'json': true,
+		'qs': input
 	};
-
-	if (input.format != 'vdf') {
-		options.json = true;
-	}
-
-	options.qs = input;
 
 	// Retry until valid response, or too many attempts.
 	this._retryUntilResponse(options, callback);
@@ -41,34 +36,31 @@ CWebRequest.prototype._retryUntilResponse = function(attempts, options, callback
 		return;
 	}
 
-	var format = options.qs.format || 'json';
-
 	var self = this;
 	self.httpRequest(options, function(err, response, body) {
 		attempts++;
 		if (err) {
+			console.log(err);
 			// Retry if an error occurred.
 			setTimeout(CWebRequest.prototype._retryUntilResponse.bind(self, attempts, options, callback), 2000);
 			return;
 		}
 
-		if (!body || format == 'json' && !body.result) {
+		if (!body || typeof body != 'object') {
 			// Missing body, something went wrong.
 			callback(new Error('Invalid API response'));
 			return;
 		}
 
-		if (format == 'vdf') {
-			try {
-				body = VDF.parse(body);
-			} catch (err) {
-				callback(err);
-				return;
-			}
+		var result = body.result;
+
+		if (result.status != 1) {
+			callback(new Error(result.note));
+			return;
 		}
 
 		// Got a valid response, running the callback.
-		callback(null, body);
+		callback(null, result);
 	});
 };
 
@@ -109,13 +101,6 @@ CWebRequest.prototype._checkHttpError = function(err, response, callback, body) 
 
 	if (response.statusCode > 499 && response.statusCode < 600) {
 		err = new Error('Team Fortress 2 APIs are down');
-		err.code = response.statusCode;
-		callback(err, response, body);
-		return err;
-	}
-
-	if (response.statusCode > 299 || response.statusCode < 199) {
-		err = new Error('HTTP error ' + response.statusCode);
 		err.code = response.statusCode;
 		callback(err, response, body);
 		return err;

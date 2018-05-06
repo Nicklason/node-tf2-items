@@ -20,10 +20,10 @@ function Items(options) {
 
 Items.prototype.init = function(callback) {
 	var self = this;
-	self.getSchema(function(err, success) {
-		if (err || !success) {
+	self.getSchema(function(err) {
+		if (err) {
 			if (callback) {
-				callback(err || new Error('Did not get a valid response'));
+				callback(err);
 			}
 			return;
 		}
@@ -41,16 +41,15 @@ Items.prototype.getSchema = function(callback) {
 	var schema = new CSchema();
 
 	var self = this;
-	schema.fetch(self.apiKey, function(err, success) {
-		if (err && callback) {
-			callback(err);
+	schema.fetch(self.apiKey, function(err) {
+		if (err) {
+			if (callback) {
+				callback(err);
+			}
 			return;
 		}
 
-		if (success) {
-			// Update schema if request was successful.
-			self.schema = schema;
-		}
+		self.schema = schema;
 
 		if (callback) {
 			callback(null, schema);
