@@ -19,6 +19,11 @@ function Items(options) {
 }
 
 Items.prototype.init = function(callback) {
+	if (this.ready == true) {
+		callback(null);
+		return;
+	}
+
 	var self = this;
 	self.getSchema(function(err) {
 		if (err) {
