@@ -20,7 +20,9 @@ function Items(options) {
 
 Items.prototype.init = function(callback) {
 	if (this.ready == true) {
-		callback(null);
+		if (callback) {
+			callback(null);
+		}
 		return;
 	}
 
