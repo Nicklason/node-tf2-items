@@ -101,6 +101,7 @@ CSchema.prototype.getItem = function(defindex) {
 				name: item.name,
 				item_name: item.item_name,
 				proper_name: item.proper_name == 1 || item.proper_name == true ? true : false,
+				item_quality: item.item_quality,
 				item_class: item.item_class,
 				item_type_name: item.item_type_name,
 				image: (item.image_url_large || item.image_url).replace('http://media.steampowered.com/apps/440/icons/', ''),
