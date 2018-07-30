@@ -33,7 +33,7 @@ describe('Items', function () {
             });
         });
 
-        it('should initialize without errors (assuming that Steam is always responsive)', function (done) {
+        it('should initialize without errors (assuming that Steam is responsive)', function (done) {
             this.timeout(10000);
 
             tf2Items.apiKey = process.env.STEAM_API_KEY;

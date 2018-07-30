@@ -28,6 +28,7 @@
     "dependencies": {
         "async": "^2.6.1",
         "moment": "^2.22.2",
+        "object.values": "^1.0.4",
         "requestretry": "^2.0.0",
         "util": "^0.11.0"
     },
