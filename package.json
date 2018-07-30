@@ -2,7 +2,7 @@
     "name": "tf2-items",
     "version": "3.0.0",
     "description": "Get information about Team Fortress 2 items and the schema",
-    "main": "index.js",
+    "main": "./lib/items.js",
     "engines": {
         "node": ">=6.0.0"
     },
@@ -22,7 +22,12 @@
         "url": "https://github.com/Nicklason/node-tf2-items/issues"
     },
     "homepage": "https://github.com/Nicklason/node-tf2-items#readme",
-    "dependencies": {},
+    "dependencies": {
+        "async": "^2.6.1",
+        "moment": "^2.22.2",
+        "requestretry": "^2.0.0",
+        "util": "^0.11.0"
+    },
     "devDependencies": {
         "eslint": "^5.2.0",
         "eslint-config-google": "^0.9.1",

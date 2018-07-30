@@ -64,6 +64,9 @@ typings/
 test/
 *.yml
 
+# Local testing environment
+local/
+
 # Linting
 .eslintignore
 .eslintrc
