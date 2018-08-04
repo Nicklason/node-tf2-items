@@ -6,15 +6,14 @@ require('dotenv').config();
 
 const assert = require('assert');
 const fs = require('graceful-fs');
-const moment = require('moment');
 const path = require('path');
-const TF2Items = require('../');
 
+const factory = require('./factory');
 const fileDir = path.join(__dirname, 'files');
 
 describe('Items', function () {
     describe('Instantiate', function () {
-        const tf2Items = new TF2Items({ updateTime: 3599999 });
+        const tf2Items = factory({ updateTime: 3599999 });
 
         it('should limit updateTime to 3600000 milliseconds (1 hour)', function () {
             assert.strictEqual(tf2Items.updateTime, 3600000);
@@ -24,7 +23,7 @@ describe('Items', function () {
     describe('#init()', function () {
         let tf2Items;
         before(function () {
-            tf2Items = new TF2Items({ updateTime: -1 });
+            tf2Items = factory({ updateTime: -1 });
         });
 
         it('should throw an error when missing apiKey', function () {
@@ -53,14 +52,8 @@ describe('Items', function () {
         let json;
 
         before(function () {
-            tf2Items = new TF2Items();
-
+            tf2Items = factory(undefined, true);
             json = JSON.parse(fs.readFileSync(path.join(fileDir, 'schema.json')));
-            tf2Items.setSchema(json);
-        });
-
-        it('should have all the properties in the saved file', function () {
-            assert.equal(Object.keys(tf2Items.schema).length, Object.keys(json).length);
         });
 
         it('should export the same file', function () {
@@ -68,18 +61,15 @@ describe('Items', function () {
             assert.deepStrictEqual(json2, json);
         });
     });
+});
 
+describe('Schema', function () {
     describe('#getName()', function () {
-        const tf2Items = new TF2Items({ apiKey: process.env.STEAM_API_KEY, updateTime: -1 });
-
-        let schema = JSON.parse(fs.readFileSync(path.join(fileDir, 'schema.json')));
-        schema.time = moment().unix();
-
-        tf2Items.setSchema(schema);
+        const tf2Items = factory({ apiKey: process.env.STEAM_API_KEY, updateTime: -1 }, true);
 
         it('should throw an error if the module is not initialized (not ready)', function () {
             assert.throws(function () {
-                tf2Items.getName();
+                tf2Items.schema.getName();
             });
         });
 
@@ -88,7 +78,7 @@ describe('Items', function () {
         });
 
         it('should return null if no item with the same defindex was', function () {
-            const name = tf2Items.getName({
+            const name = tf2Items.schema.getName({
                 defindex: 123,
                 quality: 6,
                 craftable: true,
@@ -101,7 +91,7 @@ describe('Items', function () {
         });
 
         it('should return "The Team Captain"', function () {
-            const name = tf2Items.getName({
+            const name = tf2Items.schema.getName({
                 defindex: 378,
                 quality: 6,
                 craftable: true,
@@ -114,7 +104,7 @@ describe('Items', function () {
         });
 
         it('should return "Unusual Horseless Headless Horsemann\'s Headtaker"', function () {
-            const name = tf2Items.getName({
+            const name = tf2Items.schema.getName({
                 defindex: 266,
                 quality: 5,
                 craftable: true,
@@ -127,7 +117,7 @@ describe('Items', function () {
         });
 
         it('should return "Strange Unusual Horseless Headless Horsemann\'s Headtaker"', function () {
-            const name = tf2Items.getName({
+            const name = tf2Items.schema.getName({
                 defindex: 266,
                 quality: 11,
                 craftable: true,
@@ -140,7 +130,7 @@ describe('Items', function () {
         });
 
         it('should return "Non-Tradeable Non-Craftable Tour of Duty Ticket"', function () {
-            const name = tf2Items.getName({
+            const name = tf2Items.schema.getName({
                 defindex: 725,
                 quality: 6,
                 craftable: false,
@@ -154,7 +144,7 @@ describe('Items', function () {
         });
 
         it('should return "Bubbling War Pig"', function () {
-            const name = tf2Items.getName({
+            const name = tf2Items.schema.getName({
                 defindex: 829,
                 quality: 5,
                 craftable: true,
@@ -168,7 +158,7 @@ describe('Items', function () {
         });
 
         it('should return "Strange Professional Killstreak Australium Rocket Launcher"', function () {
-            const name = tf2Items.getName({
+            const name = tf2Items.schema.getName({
                 defindex: 205,
                 quality: 11,
                 craftable: true,
@@ -179,6 +169,54 @@ describe('Items', function () {
             });
 
             assert.equal(name, 'Strange Professional Killstreak Australium Rocket Launcher');
+        });
+    });
+});
+
+describe('Inventory', function () {
+    const tf2Items = factory({ apiKey: process.env.STEAM_API_KEY, updateTime: -1 }, true);
+    let inventory;
+
+    before(function (done) {
+        tf2Items.init(done);
+    });
+
+    describe('#fetch', function (done) {
+        it('should fetch without errors (assuming that Steam is responsive)', function (done) {
+            this.timeout(30000);
+            tf2Items.getInventory('76561198120070906', function (err, inv) {
+                if (err) {
+                    return done(err);
+                }
+
+                inventory = inv;
+                done();
+            });
+        });
+    });
+
+    describe('#isPrivate()', function () {
+        it('should return false (inventory is not private)', function () {
+            assert.strictEqual(inventory.isPrivate(), false);
+        });
+    });
+
+    describe('#getOverview', function (done) {
+        it('should not throw an error when creating the overview', function () {
+            assert.doesNotThrow(function () {
+                inventory.getOverview();
+            });
+        });
+
+        it('should return an object', function () {
+            // It does not display all items because it is using a minified schema used to test with (files/schema.json)
+            assert.equal(typeof inventory.getOverview(), 'object');
+        });
+    });
+
+    describe('#findItem()', function () {
+        it('should null because an item with the same id was not found', function () {
+            assert.strictEqual(inventory.findItem('1234'), null);
         });
     });
 });
