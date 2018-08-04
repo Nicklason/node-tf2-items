@@ -1,0 +1,309 @@
+{
+    "language": "English",
+    "time": 1532965180,
+    "items": [
+        {
+            "name": "Upgradeable TF_WEAPON_ROCKETLAUNCHER",
+            "defindex": 205,
+            "item_class": "tf_weapon_rocketlauncher",
+            "item_type_name": "Rocket Launcher",
+            "item_name": "Rocket Launcher",
+            "proper_name": false,
+            "item_slot": "primary",
+            "model_player": "models/weapons/c_models/c_rocketlauncher/c_rocketlauncher.mdl",
+            "item_quality": 6,
+            "image_inventory": "backpack/weapons/w_models/w_rocketlauncher",
+            "min_ilevel": 1,
+            "max_ilevel": 1,
+            "image_url": "http://media.steampowered.com/apps/440/icons/w_rocketlauncher.0d0d3821f600a5065d5fd95dadd5ce56a8b0f802.png",
+            "image_url_large": "http://media.steampowered.com/apps/440/icons/w_rocketlauncher_large.376e56473114d28a687759b568bbfb03cac12823.png",
+            "craft_class": "",
+            "craft_material_type": "weapon",
+            "capabilities": {
+                "nameable": true,
+                "can_gift_wrap": true,
+                "can_craft_mark": true,
+                "can_be_restored": true,
+                "strange_parts": true,
+                "can_card_upgrade": true,
+                "can_strangify": true,
+                "can_killstreakify": true,
+                "can_consume": true
+            },
+            "styles": [
+                {
+                    "name": "TF_UnknownStyle"
+                },
+                {
+                    "name": "TF_UnknownStyle"
+                }
+            ],
+            "used_by_classes": [
+                "Soldier"
+            ]
+        },
+        {
+            "name": "The Horseless Headless Horseman's Headtaker",
+            "defindex": 266,
+            "item_class": "tf_weapon_sword",
+            "item_type_name": "Axe",
+            "item_name": "Horseless Headless Horsemann's Headtaker",
+            "item_description": "Cursed by dark spirits similar to\nthose that dwell within the Eyelander.",
+            "proper_name": true,
+            "item_slot": "melee",
+            "model_player": "models/weapons/c_models/c_headtaker/c_headtaker.mdl",
+            "item_quality": 5,
+            "image_inventory": "backpack/weapons/c_models/c_headtaker/c_headtaker",
+            "min_ilevel": 5,
+            "max_ilevel": 5,
+            "image_url": "http://media.steampowered.com/apps/440/icons/c_headtaker.d55e7b3a0e3ef98372b479d45083a4d10a663edf.png",
+            "image_url_large": "http://media.steampowered.com/apps/440/icons/c_headtaker_large.997b58b9b44f97831ca9dd1a3ea7d1cdfb33f101.png",
+            "craft_class": "weapon",
+            "craft_material_type": "weapon",
+            "capabilities": {
+                "nameable": true,
+                "can_gift_wrap": true,
+                "can_craft_mark": true,
+                "can_be_restored": true,
+                "strange_parts": true,
+                "can_card_upgrade": true,
+                "can_strangify": true,
+                "can_killstreakify": true,
+                "can_consume": true
+            },
+            "styles": [
+                {
+                    "name": "TF_UnknownStyle"
+                },
+                {
+                    "name": "TF_UnknownStyle"
+                }
+            ],
+            "used_by_classes": [
+                "Demoman"
+            ],
+            "attributes": [
+                {
+                    "name": "is_a_sword",
+                    "class": "is_a_sword",
+                    "value": 72
+                },
+                {
+                    "name": "crit mod disabled",
+                    "class": "mult_crit_chance",
+                    "value": 0
+                },
+                {
+                    "name": "max health additive penalty",
+                    "class": "add_maxhealth",
+                    "value": -25
+                },
+                {
+                    "name": "decapitate type",
+                    "class": "decapitate_type",
+                    "value": 1
+                },
+                {
+                    "name": "kill eater score type",
+                    "class": "kill_eater_score_type",
+                    "value": 6
+                },
+                {
+                    "name": "kill eater kill type",
+                    "class": "kill_eater_kill_type",
+                    "value": 6
+                },
+                {
+                    "name": "special taunt",
+                    "class": "special_taunt",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "name": "The Team Captain",
+            "defindex": 378,
+            "item_class": "tf_wearable",
+            "item_type_name": "Hat",
+            "item_name": "Team Captain",
+            "item_description": "Our lawyers say 'YES! YES!'",
+            "proper_name": true,
+            "item_slot": "misc",
+            "model_player": "models/player/items/Scout/Scout_officer.mdl",
+            "item_quality": 6,
+            "image_inventory": "backpack/player/items/soldier/soldier_officer",
+            "min_ilevel": 1,
+            "max_ilevel": 100,
+            "image_url": "http://media.steampowered.com/apps/440/icons/soldier_officer.f0976b763aa371c65d389d77f5f3429f5a431b5e.png",
+            "image_url_large": "http://media.steampowered.com/apps/440/icons/soldier_officer_large.1ea830725bac691645665cc036f60f910c8a0233.png",
+            "drop_type": "drop",
+            "craft_class": "hat",
+            "craft_material_type": "hat",
+            "capabilities": {
+                "nameable": true,
+                "can_craft_if_purchased": true,
+                "can_gift_wrap": true,
+                "can_craft_count": true,
+                "can_craft_mark": true,
+                "can_be_restored": true,
+                "strange_parts": true,
+                "can_card_upgrade": true,
+                "can_strangify": true,
+                "can_killstreakify": true,
+                "can_consume": true
+            },
+            "used_by_classes": [
+                "Soldier",
+                "Medic",
+                "Heavy"
+            ],
+            "attributes": [
+                {
+                    "name": "kill eater score type",
+                    "class": "kill_eater_score_type",
+                    "value": 64
+                },
+                {
+                    "name": "kill eater kill type",
+                    "class": "kill_eater_kill_type",
+                    "value": 64
+                }
+            ]
+        },
+        {
+            "name": "Tour of Duty Ticket",
+            "defindex": 725,
+            "item_class": "craft_item",
+            "item_type_name": "Ticket",
+            "item_name": "Tour of Duty Ticket",
+            "item_description": "Present this ticket in Mann vs. Machine to play Mann Up Mode on an official server to earn rare items and track progress on your Tour of Duty Badge.",
+            "proper_name": false,
+            "model_player": null,
+            "item_quality": 6,
+            "image_inventory": "backpack/crafting/mvm_ticket",
+            "min_ilevel": 1,
+            "max_ilevel": 1,
+            "image_url": "http://media.steampowered.com/apps/440/icons/mvm_ticket.174c8f33d98ff44117cce8ed73a689bbd2328281.png",
+            "image_url_large": "http://media.steampowered.com/apps/440/icons/mvm_ticket_large.c5057154f4fc93c0f5c667f69a988971b19bb95f.png",
+            "capabilities": {
+                "can_gift_wrap": true,
+                "can_craft_mark": true,
+                "can_be_restored": true,
+                "strange_parts": true,
+                "can_card_upgrade": true,
+                "can_strangify": true,
+                "can_killstreakify": true,
+                "can_consume": true
+            },
+            "used_by_classes": []
+        },
+        {
+            "name": "The War Pig",
+            "defindex": 829,
+            "item_class": "tf_wearable",
+            "item_type_name": "Hat",
+            "item_name": "War Pig",
+            "item_description": "After complaints that obstructed vision was affecting his performance, Soldier slapped some goggles on a helmet and charged back into the fray. His performance did not improve, but on the upside, everyone has stopped expecting anything from him.",
+            "proper_name": true,
+            "item_slot": "misc",
+            "model_player": "models/workshop/player/items/soldier/soldier_warpig/soldier_warpig.mdl",
+            "item_quality": 6,
+            "image_inventory": "backpack/workshop/player/items/soldier/soldier_warpig/soldier_warpig",
+            "min_ilevel": 1,
+            "max_ilevel": 100,
+            "image_url": "http://media.steampowered.com/apps/440/icons/soldier_warpig.af29502b5f44322c182fabc719f9dd96cf00d93a.png",
+            "image_url_large": "http://media.steampowered.com/apps/440/icons/soldier_warpig_large.55b08d34eac7bcedad592fe78aeb29ef84e16f5c.png",
+            "drop_type": "drop",
+            "craft_class": "hat",
+            "craft_material_type": "hat",
+            "capabilities": {
+                "paintable": true,
+                "nameable": true,
+                "can_craft_if_purchased": true,
+                "can_gift_wrap": true,
+                "can_craft_count": true,
+                "can_craft_mark": true,
+                "can_be_restored": true,
+                "strange_parts": true,
+                "can_card_upgrade": true,
+                "can_strangify": true,
+                "can_killstreakify": true,
+                "can_consume": true
+            },
+            "styles": [
+                {
+                    "name": "Uninhibited"
+                },
+                {
+                    "name": "Conspicuous"
+                }
+            ],
+            "used_by_classes": [
+                "Soldier"
+            ],
+            "attributes": [
+                {
+                    "name": "kill eater score type",
+                    "class": "kill_eater_score_type",
+                    "value": 64
+                },
+                {
+                    "name": "kill eater kill type",
+                    "class": "kill_eater_kill_type",
+                    "value": 64
+                }
+            ]
+        }
+    ],
+    "items_game_url": "http://media.steampowered.com/apps/440/scripts/items/items_game.3509d8c3628b52c4eca3a192d4a2a2090025bfdc.txt",
+    "qualities": {
+        "Normal": 0,
+        "rarity1": 1,
+        "rarity2": 2,
+        "vintage": 3,
+        "rarity3": 4,
+        "rarity4": 5,
+        "Unique": 6,
+        "community": 7,
+        "developer": 8,
+        "selfmade": 9,
+        "customized": 10,
+        "strange": 11,
+        "completed": 12,
+        "haunted": 13,
+        "collectors": 14,
+        "paintkitweapon": 15
+    },
+    "qualityNames": {
+        "Normal": "Normal",
+        "rarity1": "Genuine",
+        "rarity2": "rarity2",
+        "vintage": "Vintage",
+        "rarity3": "rarity3",
+        "rarity4": "Unusual",
+        "Unique": "Unique",
+        "community": "Community",
+        "developer": "Valve",
+        "selfmade": "Self-Made",
+        "customized": "Customized",
+        "strange": "Strange",
+        "completed": "Completed",
+        "haunted": "Haunted",
+        "collectors": "Collector's",
+        "paintkitweapon": "Decorated Weapon"
+    },
+    "attribute_controlled_attached_particles": [
+        {
+            "system": "unusual_orbit_nutsnbolts",
+            "id": 31,
+            "attach_to_rootbone": true,
+            "name": "Nuts n' Bolts"
+        },
+        {
+            "system": "unusual_bubbles",
+            "id": 34,
+            "attach_to_rootbone": true,
+            "name": "Bubbling"
+        }
+    ]
+}
