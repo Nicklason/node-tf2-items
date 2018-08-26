@@ -1,6 +1,6 @@
 {
     "name": "tf2-items",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "description": "Get information about Team Fortress 2 items and the schema",
     "main": "./lib/items.js",
     "engines": {
@@ -36,7 +36,7 @@
         "assert": "^1.4.1",
         "coveralls": "^3.0.2",
         "dotenv": "^6.0.0",
-        "eslint": "^5.3.0",
+        "eslint": "^5.4.0",
         "eslint-config-google": "^0.9.1",
         "istanbul": "^0.4.5",
         "mocha": "^5.2.0",

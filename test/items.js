@@ -103,6 +103,19 @@ describe('Schema', function () {
             assert.equal(name, 'The Team Captain');
         });
 
+        it('should return "Team Captain"', function () {
+            const name = tf2Items.schema.getName({
+                defindex: 378,
+                quality: 6,
+                craftable: true,
+                killstreak: 0,
+                australium: 0,
+                effect: null
+            }, false);
+
+            assert.equal(name, 'Team Captain');
+        });
+
         it('should return "Unusual Horseless Headless Horsemann\'s Headtaker"', function () {
             const name = tf2Items.schema.getName({
                 defindex: 266,
