@@ -90,6 +90,20 @@ describe('Schema', function () {
             assert.equal(name, null);
         });
 
+        it('should not care about types', function () {
+            const name = tf2Items.schema.getName({
+                defindex: '378',
+                quality: '6',
+                craftable: 'false',
+                tradeable: 'false',
+                killstreak: '1',
+                australium: 'true',
+                effect: '34'
+            });
+
+            assert.equal(name, 'Non-Tradeable Non-Craftable Bubbling Killstreak Australium Team Captain');
+        });
+
         it('should return "The Team Captain"', function () {
             const name = tf2Items.schema.getName({
                 defindex: 378,
