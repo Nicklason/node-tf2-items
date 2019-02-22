@@ -26,21 +26,21 @@
     },
     "homepage": "https://github.com/Nicklason/node-tf2-items#readme",
     "dependencies": {
-        "@nicklason/api-request": "^1.1.3",
-        "async": "^2.6.1",
-        "moment": "^2.22.2",
-        "object.values": "^1.0.4",
+        "@nicklason/request-retry": "^1.0.2",
+        "async": "^2.6.2",
+        "moment": "^2.24.0",
+        "object.values": "^1.1.0",
         "util": "^0.11.1"
     },
     "devDependencies": {
         "assert": "^1.4.1",
-        "coveralls": "^3.0.2",
-        "dotenv": "^6.1.0",
-        "eslint": "^5.8.0",
-        "eslint-config-google": "^0.10.0",
+        "coveralls": "^3.0.3",
+        "dotenv": "^6.2.0",
+        "eslint": "^5.14.1",
+        "eslint-config-google": "^0.12.0",
         "istanbul": "^0.4.5",
-        "mocha": "^5.2.0",
-        "nodemon": "^1.18.5",
+        "mocha": "^6.0.1",
+        "nodemon": "^1.18.10",
         "path": "^0.12.7"
     }
 }
