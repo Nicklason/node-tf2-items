@@ -197,6 +197,20 @@ describe('Schema', function () {
 
             assert.equal(name, 'Strange Professional Killstreak Australium Rocket Launcher');
         });
+
+        it('should return "Strange Night Owl Sniper Rifle (Battle Scarred)"', function () {
+            const name = tf2Items.schema.getName({
+                defindex: 15000,
+                quality: 11,
+                craftable: true,
+                killstreak: 0,
+                australium: false,
+                effect: null,
+                wear: 5
+            });
+
+            assert.equal(name, 'Strange Night Owl Sniper Rifle (Battle Scarred)');
+        });
     });
 });
 

@@ -253,6 +253,45 @@
                     "value": 64
                 }
             ]
+        },
+        {
+            "name": "concealedkiller_sniperrifle_nightowl",
+            "defindex": 15000,
+            "item_class": "tf_weapon_sniperrifle",
+            "item_type_name": "Sniper Rifle",
+            "item_name": "Sniper Rifle",
+            "proper_name": true,
+            "item_slot": "primary",
+            "model_player": "models/weapons/c_models/c_sniperrifle/c_sniperrifle.mdl",
+            "item_quality": 15,
+            "image_inventory": "backpack/weapons/w_models/w_sniperrifle",
+            "min_ilevel": 1,
+            "max_ilevel": 1,
+            "image_url": "http://media.steampowered.com/apps/440/icons/w_sniperrifle.af3c429316a18fddf96dd6af03ab0c220d3cfe09.png",
+            "image_url_large": "http://media.steampowered.com/apps/440/icons/w_sniperrifle_large.32f175b26906edb5e44d8520b5feafac65ca97c9.png",
+            "craft_class": "",
+            "craft_material_type": "",
+            "capabilities": {
+                "nameable": true,
+                "can_gift_wrap": true,
+                "can_craft_mark": true,
+                "can_be_restored": true,
+                "strange_parts": true,
+                "can_card_upgrade": true,
+                "can_strangify": true,
+                "can_killstreakify": true,
+                "can_consume": true
+            },
+            "used_by_classes": [
+                "Sniper"
+            ],
+            "attributes": [
+                {
+                    "name": "set_item_texture_wear",
+                    "class": "set_item_texture_wear",
+                    "value": 0.4000000059604645
+                }
+            ]
         }
     ],
     "items_game_url": "http://media.steampowered.com/apps/440/scripts/items/items_game.3509d8c3628b52c4eca3a192d4a2a2090025bfdc.txt",
@@ -304,6 +343,12 @@
             "id": 34,
             "attach_to_rootbone": true,
             "name": "Bubbling"
+        }
+    ],
+    "skins": [
+        {
+            "id": "14",
+            "name": "Night Owl"
         }
     ]
 }
