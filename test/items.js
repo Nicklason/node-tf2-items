@@ -211,6 +211,21 @@ describe('Schema', function () {
 
             assert.equal(name, 'Strange Night Owl Sniper Rifle (Battle Scarred)');
         });
+
+        it('should return "Strange Bubbling War Pig" (elevated quality)', function () {
+            const name = tf2Items.schema.getName({
+                defindex: 829,
+                quality: 5,
+                craftable: true,
+                tradeable: true,
+                killstreak: 0,
+                australium: 0,
+                effect: 34,
+                quality2: 11
+            });
+
+            assert.equal(name, 'Strange Bubbling War Pig');
+        });
     });
 });
 
