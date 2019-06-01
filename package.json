@@ -1,6 +1,6 @@
 {
     "name": "tf2-items",
-    "version": "3.5.0",
+    "version": "3.5.1",
     "description": "Get information about Team Fortress 2 items and the schema",
     "main": "./lib/items.js",
     "engines": {
