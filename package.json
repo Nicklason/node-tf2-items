@@ -11,7 +11,7 @@
         "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
         "report": "npm test && istanbul report",
         "coveralls": "cat ./coverage/lcov.info | coveralls",
-        "release": "np --no-cleanup"
+        "release": "np --yolo"
     },
     "repository": {
         "type": "git",
